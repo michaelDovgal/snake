@@ -14,8 +14,20 @@ namespace Snake
         static void Main(string[] args)
         {
 
-            HorizontalLine LineTop = new HorizontalLine(0, 60, 0, '=');
+            Console.SetBufferSize(80, 25);
+           
+            HorizontalLine LineTop = new HorizontalLine(0, 78, 0, '#');
+            HorizontalLine LineBot = new HorizontalLine(0, 78, 24, '#');
+            VerticalLine LineLeft = new VerticalLine(0, 24, 0, '#');
+            VerticalLine LineRight = new VerticalLine(0, 24, 78, '#');
+
+
             LineTop.Draw();
+            LineBot.Draw();
+            LineRight.Draw();
+            LineLeft.Draw();
+
+
 
             Console.ReadLine();
 
