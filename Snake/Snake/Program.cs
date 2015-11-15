@@ -21,6 +21,28 @@ namespace Snake
             p2.DrawPoint();
 
 
+            List<int> numP = new List<int>();
+            numP.Add(0);
+            numP.Add(1);
+            numP.Add(2);
+
+
+            int x = numP[0];
+            int y = numP[1];
+            int z = numP[2];
+
+            foreach (int i in numP)
+            {
+                Console.WriteLine(i);
+            }
+
+            List<Point> lPoint = new List<Point>();
+            lPoint.Add(p1);
+            lPoint.Add(p2);
+
+
+
+
             Console.ReadLine();
 
         }
