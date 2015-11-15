@@ -11,6 +11,7 @@ namespace Snake
 
         public HorizontalLine(int xBegin, int xEnd, int y, char sym)
         {
+            pList = new List<Point>();
             for (int x = xBegin; x <= xEnd; x++)
             {
                 Point p = new Point(x, y, sym);

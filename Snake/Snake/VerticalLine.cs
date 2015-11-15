@@ -10,6 +10,7 @@ namespace Snake
     {
         public VerticalLine(int yBegin, int yEnd, int x, char sym)
         {
+            pList = new List<Point>();
             for(int y = yBegin;y <= yEnd; y++)
             {
                 Point p = new Point(x, y, sym);
