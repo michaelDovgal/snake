@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,20 +13,23 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-            int x1 = 3;
-            int y1 = 4;
-            char SymPoint1 = '%';
+            Point p1 = new Point();
+            Point p2 = new Point();
 
 
-            int x2 = 5;
-            int y2 = 4;
-            char SymPoint2 = '*';
+            p1.x = 3;
+            p1.y = 3;
+            p1.sym = '*';
+            p1.DrawPoint();
 
-            DrawPoint(x1,y1,SymPoint1);
+            p2.x = 4;
+            p2.y = 4;
+            p2.sym = '@';
+            p2.DrawPoint();
 
-            DrawPoint(x2, y2, SymPoint2);
 
             Console.ReadLine();
+
         }
 
 
