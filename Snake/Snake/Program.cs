@@ -16,17 +16,14 @@ namespace Snake
         {
 
             Console.SetBufferSize(80, 25);
-           
-            HorizontalLine LineTop = new HorizontalLine(0, 78, 0, '#');
-            HorizontalLine LineBot = new HorizontalLine(0, 78, 24, '#');
-            VerticalLine LineLeft = new VerticalLine(0, 24, 0, '#');
-            VerticalLine LineRight = new VerticalLine(0, 24, 78, '#');
+
+            Freq Frequensy = new Freq(150);
+
+            Walls walls = new Walls(80, 25);
+            walls.Draw();
 
 
-            LineTop.Draw();
-            LineBot.Draw();
-            LineRight.Draw();
-            LineLeft.Draw();
+   
 
 
             Point pTale = new Point(5, 5, '*');
@@ -34,23 +31,54 @@ namespace Snake
             Snake snake = new Snake(pTale, 4, Direction.RIGHT);
             snake.Draw();
 
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
+            FoodCreator foodCreator = new FoodCreator(80, 25, '$');
+            Point food = foodCreator.CreateFood();
+            food.DrawPoint();
+            
 
-            snake.Move();
-            Thread.Sleep(300);
+            while (true)
+            {
 
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
+                if (walls.IsHit(snake) || snake.IsHitTail())
+                {
+                    Console.Clear();
+                    Console.WriteLine("Жека ЛОХ");
+                    Console.ReadLine();
+                    break;
+                }
+
+                if (snake.Eat(food))
+                {
+                    food = foodCreator.CreateFood();
+                    food.DrawPoint();
+
+                    Frequensy.Frequensy -= 10;
+                    if (Frequensy.Frequensy == 70)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Жека не ЛОХ");
+                        Console.ReadLine();
+                        break;
+                    }
+                }
+                else{
+                    snake.Move();
+                }
 
 
 
+                Thread.Sleep(Frequensy.Frequensy);
+                
+                //отслеживаем нажатие клавиши
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    snake.HandleKey(key);
+                }
 
-            Console.ReadLine();
+            }
+         
+ 
 
         }
 

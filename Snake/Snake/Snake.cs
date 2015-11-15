@@ -9,7 +9,7 @@ namespace Snake
     class Snake : Figure
     {
 
-        private Direction direction;
+        Direction direction;
        
         public Snake(Point tail, int Lenght, Direction _direction)
         {
@@ -45,5 +45,61 @@ namespace Snake
             return NewPointHead; 
         }
 
+        public void HandleKey(ConsoleKeyInfo key)
+        {
+            switch (key.Key)
+            {
+                case ConsoleKey.RightArrow:
+                    this.direction = Direction.RIGHT;
+                    break;
+
+                case ConsoleKey.LeftArrow:
+                    this.direction = Direction.LEFT;
+                    break;
+
+                case ConsoleKey.DownArrow:
+                    this.direction = Direction.DOWN;
+                    break;
+
+                case ConsoleKey.UpArrow:
+                    this.direction = Direction.UP;
+                    break;
+
+                default: break;
+
+            }
+        }
+
+
+        public bool Eat(Point food)
+        {
+            Point head = this.GetNextHeadPoint();
+            if (head.IsHit(food))
+            {
+                food.sym = head.sym;
+                food.DrawPoint();
+                pList.Add(food);
+                return true;
+
+            }
+            else{
+                return false;
+            }
+
+        }
+
+
+        internal bool IsHitTail()
+        {
+            Point head = pList.Last();
+            for (int i = 0; i < pList.Count - 2; i++)
+            {
+                if (head.IsHit(pList[i]))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

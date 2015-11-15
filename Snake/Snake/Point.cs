@@ -40,11 +40,11 @@ namespace Snake
                     break;
                 
                 case Direction.UP:
-                    y = y + offset;
+                    y = y - offset;
                     break;
                 
                 case Direction.DOWN:
-                    y = y - offset;
+                    y = y + offset;
                     break;
 
                 default: break;
@@ -63,6 +63,12 @@ namespace Snake
         {
             sym = ' ';
             DrawPoint();
+        }
+
+
+        public bool IsHit(Point p)
+        {
+            return p.x == this.x && p.y == this.y;
         }
 
     }
